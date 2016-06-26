@@ -1,0 +1,356 @@
+<?xml version="1.0"?>
+<bindings xmlns="http://www.mozilla.org/xbl"
+   xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl="http://www.mozilla.org/xbl">
+   <binding id="keyinputbox">
+      <resources>
+         <stylesheet src="common_bindings.css"/>
+      </resources>
+      <content>
+         <xul:textbox xbl:inherits="size, context, flex" 
+            readonly="true" 
+            class="keyinputbox" 
+            onkeydown="parentNode.onKeyDown(event);"
+            onkeyup="//parentNode.stopEvent(event);return false;"
+            onkeypress="//parentNode.stopEvent(event);return false;"
+            onfocus="style.background='#faa';"
+            onblur="style.background='#fff';"
+            />
+      </content>
+      <implementation>
+         <!-- Stores the keyCode and modifiers in a single value -->
+         <property name="combinedValue"
+            onset="return this.setCombinedValue(val);"
+            onget="return this.getCombinedValue();"/>           
+         <property name="allowModifiers"
+            onset="return this.setAttribute('allowmodifiers',val);"
+            onget="return this.getAttribute('allowmodifiers');"/>
+         <!-- onset="return this.updateAttr('modifiers',val);" -->
+         <property name="modifiers"
+            onget="return this.getAttribute('modifiers');"/>
+         <!-- onset="return this.updateAttr('keycode',val);" -->
+         <property name="keyCode"
+            onget="return this.getAttribute('keycode');"/>
+       
+      
+         <constructor>
+        if (this.getAttribute('keycode') != '')
+          this.updateDisplay();
+         </constructor>
+      
+         <method name="updateAttr">
+            <parameter name="attr"/>
+            <parameter name="value"/>
+            <body>
+            <![CDATA[
+               if (attr == 'modifiers' && this.getAttribute('allowmodifiers') == 'false')
+                 return false;
+               this.setAttribute(attr, value);
+               this.updateDisplay();
+               return true;
+            ]]>
+            </body>
+         </method>
+       
+         <method name="updateDisplay">
+            <body>
+          document.getAnonymousNodes(this)[0].value = this.getKeyString();
+            </body>
+         </method>
+      
+         <method name="getKeyString">
+            <body>
+            return this.getStringForCombinedKeyCode(this.getCombinedValue())
+            </body>
+      	
+         </method>
+         <method name="onKeyDown">
+            <parameter name="event"/>
+            <body>
+            <![CDATA[
+                var keyCode = event.keyCode
+                if (!event.ctrlKey && !event.altKey && !event.metaKey && event.keyCode==KeyEvent.DOM_VK_TAB){
+                    return;
+                }
+                this.setKey(event);
+                this.stopEvent(event);
+            ]]>
+            </body>
+         </method> 
+    
+         <method name="stopEvent">
+            <parameter name="event"/>
+            <body>
+          event.preventDefault();
+          event.stopPropagation();
+            </body>
+         </method>
+        
+      
+         <method name="setKey">
+            <parameter name="event"/>
+            <body>
+         this.updateAttr('keycode',event.keyCode);
+         this.updateAttr('modifiers',this.getModifiers(event));
+         this.updateDisplay();
+            </body>
+         </method>   
+      
+      
+         <method name="getModifiers">
+            <parameter name="event"/>
+            <body>
+          return event.altKey * Event.ALT_MASK |
+                 event.ctrlKey * Event.CONTROL_MASK |
+                 event.shiftKey * Event.SHIFT_MASK |
+                 event.metaKey * Event.META_MASK;
+            </body>
+         </method> 
+      
+         <method name="setCombinedValue">
+            <parameter name="value"/>
+            <body>
+            <![CDATA[
+               if(value=="0"){
+                   this.updateAttr('modifiers', 0);
+                   this.updateAttr('keycode', "");
+               }else{
+                   this.updateAttr('modifiers', value & 0xF);
+                   this.updateAttr('keycode', value >> 4);
+               }   
+            ]]>
+            </body>
+         </method>
+      
+         <method name="getCombinedValue">
+            <body>
+            <![CDATA[
+               return this.keyCode << 4 | this.modifiers;
+            ]]>
+            </body>
+         </method>
+      
+         <method name="getStringForCombinedKeyCode">
+            <parameter name="combinedKeyCode"/>
+            <body>
+      		return KeyInputbox.getStringForCombinedKeyCode(combinedKeyCode)
+            </body>
+         </method>
+      </implementation>
+   </binding>
+
+   <binding id="colorfield" >
+      <content>
+         <xul:hbox flex="1">
+            <xul:menulist flex="1" editable="true" onselect="document.getBindingParent(this).onMenulistChange()" 
+                          oninput="de_mouseless_common.ControlUtils.filterMenulist(this); document.getBindingParent(this).onMenulistChange()">
+               <xul:menupopup maxheight="208px">
+                  <xul:menuitem label="AliceBlue"/>        
+                  <xul:menuitem label="AntiqueWhite"/>
+                  <xul:menuitem label="Azure"/>
+                  <xul:menuitem label="Beige"/>        
+                  <xul:menuitem label="Bisque"/>        
+                  <xul:menuitem label="Black"/>        
+                  <xul:menuitem label="BlanchedAlmond"/>        
+                  <xul:menuitem label="Blue"/>        
+                  <xul:menuitem label="BlueViolet"/>        
+                  <xul:menuitem label="Brown"/>        
+                  <xul:menuitem label="BurlyWood"/>        
+                  <xul:menuitem label="CadetBlue"/>        
+                  <xul:menuitem label="Chartreuse"/>        
+                  <xul:menuitem label="Chocolate"/>        
+                  <xul:menuitem label="Coral"/>        
+                  <xul:menuitem label="CornflowerBlue"/>        
+                  <xul:menuitem label="Cornsilk"/>        
+                  <xul:menuitem label="Crimson"/>        
+                  <xul:menuitem label="Cyan"/>        
+                  <xul:menuitem label="DarkBlue"/>        
+                  <xul:menuitem label="DarkCyan"/>        
+                  <xul:menuitem label="DarkGoldenRod"/>        
+                  <xul:menuitem label="DarkGray"/>        
+                  <xul:menuitem label="DarkGreen"/>        
+                  <xul:menuitem label="DarkKhaki"/>        
+                  <xul:menuitem label="DarkMagenta"/>        
+                  <xul:menuitem label="DarkOliveGreen"/>        
+                  <xul:menuitem label="DarkOrange"/>        
+                  <xul:menuitem label="DarkOrchid"/>        
+                  <xul:menuitem label="DarkRed"/>        
+                  <xul:menuitem label="DarkSalmon"/>        
+                  <xul:menuitem label="DarkSeaGreen"/>        
+                  <xul:menuitem label="DarkSlateBlue"/>        
+                  <xul:menuitem label="DarkSlateGray"/>        
+                  <xul:menuitem label="DarkTurquoise"/>        
+                  <xul:menuitem label="DarkViolet"/>        
+                  <xul:menuitem label="DeepPink"/>        
+                  <xul:menuitem label="DarkSkyBlue"/>        
+                  <xul:menuitem label="DimGray"/>        
+                  <xul:menuitem label="DodgerBlue"/>        
+                  <xul:menuitem label="Feldspar"/>        
+                  <xul:menuitem label="FireBrick"/>        
+                  <xul:menuitem label="FloralWhite"/>        
+                  <xul:menuitem label="ForestGreen"/>        
+                  <xul:menuitem label="Fuchsia"/>        
+                  <xul:menuitem label="Gainsboro"/>        
+                  <xul:menuitem label="GhostWhite"/>        
+                  <xul:menuitem label="Gold"/>        
+                  <xul:menuitem label="GoldenRod"/>        
+                  <xul:menuitem label="Gray"/>        
+                  <xul:menuitem label="Green"/>        
+                  <xul:menuitem label="GreenYellow"/>        
+                  <xul:menuitem label="HoneyDew"/>        
+                  <xul:menuitem label="HotPink"/>        
+                  <xul:menuitem label="IndianRed"/>        
+                  <xul:menuitem label="Indigo"/>        
+                  <xul:menuitem label="Ivory"/>        
+                  <xul:menuitem label="Khaki"/>        
+                  <xul:menuitem label="Lavender"/>        
+                  <xul:menuitem label="LavenderBlush"/>        
+                  <xul:menuitem label="LawnGreen"/>        
+                  <xul:menuitem label="LemonChiffon"/>        
+                  <xul:menuitem label="LightBlue"/>        
+                  <xul:menuitem label="LightCoral"/>        
+                  <xul:menuitem label="LightCyan"/>        
+                  <xul:menuitem label="LightGoldenRodYellow"/>        
+                  <xul:menuitem label="LightGrey"/>        
+                  <xul:menuitem label="LightGreen"/>        
+                  <xul:menuitem label="LightPink"/>        
+                  <xul:menuitem label="LightSalmon"/>        
+                  <xul:menuitem label="LightSeaGreen"/>        
+                  <xul:menuitem label="LightSkyBlue"/>        
+                  <xul:menuitem label="LightSlateBlue"/>        
+                  <xul:menuitem label="LightSlateGray"/>        
+                  <xul:menuitem label="LightSteelBlue"/>        
+                  <xul:menuitem label="LightYellow"/>        
+                  <xul:menuitem label="Lime"/>        
+                  <xul:menuitem label="LimeGreen"/>        
+                  <xul:menuitem label="Linen"/>        
+                  <xul:menuitem label="Magenta"/>        
+                  <xul:menuitem label="Maroon"/>        
+                  <xul:menuitem label="MediumAquaMarine"/>        
+                  <xul:menuitem label="MediumBlue"/>        
+                  <xul:menuitem label="MediumOrchid"/>        
+                  <xul:menuitem label="MediumPurple"/>        
+                  <xul:menuitem label="MediumSeaGreen"/>        
+                  <xul:menuitem label="MediumSlateBlue"/>        
+                  <xul:menuitem label="MediumSpringGreen"/>        
+                  <xul:menuitem label="MediumTurquoise"/>        
+                  <xul:menuitem label="MediumVioletRed"/>        
+                  <xul:menuitem label="MidnightBlue"/>        
+                  <xul:menuitem label="MintCream"/>        
+                  <xul:menuitem label="MistyRose"/>        
+                  <xul:menuitem label="Moccasin"/>        
+                  <xul:menuitem label="NavajoWhite"/>        
+                  <xul:menuitem label="Navy"/>        
+                  <xul:menuitem label="OldLace"/>        
+                  <xul:menuitem label="Olive"/>        
+                  <xul:menuitem label="OliveDrab"/>        
+                  <xul:menuitem label="Orange"/>        
+                  <xul:menuitem label="OrangeRed"/>        
+                  <xul:menuitem label="Orchid"/>        
+                  <xul:menuitem label="PaleGoldenRod"/>        
+                  <xul:menuitem label="PaleGreen"/>        
+                  <xul:menuitem label="PaleTurquoise"/>        
+                  <xul:menuitem label="PaleVioletRed"/>        
+                  <xul:menuitem label="PapayaWhip"/>        
+                  <xul:menuitem label="PeachPuff"/>        
+                  <xul:menuitem label="Peru"/>        
+                  <xul:menuitem label="Pink"/>        
+                  <xul:menuitem label="Plum"/>        
+                  <xul:menuitem label="PowderBlue"/>        
+                  <xul:menuitem label="Purple"/>        
+                  <xul:menuitem label="Red"/>        
+                  <xul:menuitem label="RosyBrown"/>        
+                  <xul:menuitem label="RoyalBlue"/>        
+                  <xul:menuitem label="SaddleBrown"/>        
+                  <xul:menuitem label="Salmon"/>        
+                  <xul:menuitem label="SandyBrown"/>        
+                  <xul:menuitem label="SeaGreen"/>        
+                  <xul:menuitem label="SeaShell"/>        
+                  <xul:menuitem label="Sienna"/>        
+                  <xul:menuitem label="Silver"/>        
+                  <xul:menuitem label="SkyBlue"/>        
+                  <xul:menuitem label="SlateBlue"/>        
+                  <xul:menuitem label="SlateGray"/>        
+                  <xul:menuitem label="Snow"/>        
+                  <xul:menuitem label="SpringGreen"/>        
+                  <xul:menuitem label="SteelBlue"/>        
+                  <xul:menuitem label="Tan"/>        
+                  <xul:menuitem label="Teal"/>        
+                  <xul:menuitem label="Thistle"/>        
+                  <xul:menuitem label="Tomato"/>        
+                  <xul:menuitem label="Turquoise"/>        
+                  <xul:menuitem label="Violet"/>        
+                  <xul:menuitem label="VioletRed"/>        
+                  <xul:menuitem label="Wheat"/>        
+                  <xul:menuitem label="White"/>        
+                  <xul:menuitem label="WhiteSmoke"/>        
+                  <xul:menuitem label="Yellow"/>        
+                  <xul:menuitem label="YellowGreen"/>        
+                  <xul:menuitem label="transparent"/>        
+                  <xul:menuitem label="inver"/>        
+               </xul:menupopup>   
+            </xul:menulist>
+            <xul:colorpicker type="button" onselect="document.getBindingParent(this).onColorpickerChange()" 
+                             onkeydown="document.getBindingParent(this).stopEvent(event)"
+                             onkeypress="document.getBindingParent(this).stopEvent(event)"/>
+         </xul:hbox>
+      </content>
+      <implementation>
+         <property name="value">
+            <getter>
+               return this.colorML.value
+            </getter>
+            <setter>
+               this.colorML.value = this.colorpicker.color = val
+               return val
+            </setter>
+         </property>
+         <constructor>
+            <![CDATA[
+               var hbox =document.getAnonymousNodes(this)[0];
+               this.colorML = hbox.firstChild
+               this.colorpicker = hbox.firstChild.nextSibling
+            ]]>
+         </constructor>
+         <method name="onMenulistChange">
+            <body>
+            <![CDATA[
+               this.value = this.colorML.value
+            ]]>
+            </body>
+         </method>
+         <method name="onColorpickerChange">
+            <body>
+            <![CDATA[
+               this.value = this.colorpicker.color
+            ]]>
+            </body>
+         </method>
+         <method name="stopEvent">
+            <parameter name="event"/>
+            <body>
+               if([13, 27].indexOf(event.keyCode)==-1 || !this.colorpicker.open)
+                  return
+               event.stopPropagation()
+               event.preventDefault()
+            </body>
+         </method>
+      </implementation>      
+      <handlers>
+      </handlers>
+   </binding>
+   
+   <binding id="editlistbox" >
+      <content>
+         <children/>
+      </content>
+      <implementation>
+         <constructor>
+            <![CDATA[
+               
+            ]]>
+         </constructor>
+         <property name="_listbox"/>
+      </implementation>
+   </binding>  
+</bindings>

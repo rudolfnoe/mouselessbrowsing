@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://mouselessbrowsing/content/common/ui/xul/common.css" type="text/css"?>
+<!--DOCTYPE window SYSTEM "chrome://mouselessbrowsing/locale/prefs.dtd"-->
+<!DOCTYPE window SYSTEM "chrome://mouselessbrowsing/locale/setup.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    buttons="accept,cancel"
+    buttonlabelcancel="Cancel" buttonlabelaccept="OK"
+    ondialogaccept="mouselessbrowsing.SetupDialogHandler.doOK()" ondialogcancel="mouselessbrowsing.SetupDialogHandler.doCancel()"
+    onload="mouselessbrowsing.SetupDialogHandler.doOnload()"
+    title="&dialog.title;">
+   
+   <script src="../../mlb_common.js"/>
+   <script src="SetupDialogHandler.js"/>
+      
+   <vbox>
+      <textbox class="plain" multiline="true" rows="6" readonly="true" tabindex="-1" value="&modifiersetup.description;"/>
+      <grid style="margin-top:7px">
+         <columns>
+            <column/>
+            <column flex="1"/>
+         </columns>
+         <rows>
+            <row align="center">
+               <label value="&modifierForWritableElement.label;"/>
+               <menulist id="modifierForWritableElement" width="125px" prefid="mouselessbrowsing.modifierForWritableElement" observes="idTypeNumericBC">
+                  <menupopup>
+                     <menuitem label="&modifierML.menuitem.none.label;" value="-1"/>
+                     <menuitem label="&modifierML.menuitem.alt.label;" value="1"/>
+                     <menuitem label="&modifierML.menuitem.ctrl.label;" value="2"/>
+                     <menuitem label="&modifierML.menuitem.ctrl-alt.label;" value="3"/>
+                  </menupopup>
+               </menulist>
+            </row>
+            <row align="center">
+               <label value="&modifierForOpenInNewTab.label;"/>
+               <menulist id="modifierForOpenInNewTab" width="125px" prefid="mouselessbrowsing.modifierForOpenInNewTab" observes="idTypeNumericBC">
+                  <menupopup>
+                     <menuitem label="&modifierML.menuitem.none.label;" value="-1"/>
+                     <menuitem label="&modifierML.menuitem.alt.label;" value="1"/>
+                     <menuitem label="&modifierML.menuitem.ctrl.label;" value="2"/>
+                     <menuitem label="&modifierML.menuitem.ctrl-alt.label;" value="3"/>
+                  </menupopup>
+               </menulist>
+            </row>
+         </rows>
+      </grid>
+   </vbox>
+</dialog>

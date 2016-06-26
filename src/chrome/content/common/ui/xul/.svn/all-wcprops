@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/69/branches/mlb/0.5.2.1/src/ui/xul
+END
+common.css
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/common.css
+END
+GenericMenulistCellEditor.js
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/GenericMenulistCellEditor.js
+END
+Listbox.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/69/branches/mlb/0.5.2.1/src/ui/xul/Listbox.js
+END
+common_bindings.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/common_bindings.xml
+END
+EditListbox.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/EditListbox.js
+END
+Constants.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/Constants.js
+END
+Dialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/Dialog.js
+END
+ControlUtils.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/69/branches/mlb/0.5.2.1/src/ui/xul/ControlUtils.js
+END
+common_bindings.css
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/common_bindings.css
+END
+KeyInputBox.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/KeyInputBox.js
+END
+PromptService.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/ui/xul/PromptService.js
+END

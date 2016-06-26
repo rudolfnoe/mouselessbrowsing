@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/143/trunk/src/chrome/content/mouselessbrowsing/core
+END
+page_data.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/149/trunk/src/chrome/content/mouselessbrowsing/core/page_data.js
+END
+AbstractInitializer.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/148/trunk/src/chrome/content/mouselessbrowsing/core/AbstractInitializer.js
+END
+convert2RegExp.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/45/trunk/src/chrome/content/mouselessbrowsing/core/convert2RegExp.js
+END
+tab_local_prefs.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/141/trunk/src/chrome/content/mouselessbrowsing/core/tab_local_prefs.js
+END
+mlb_initialization.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/149/trunk/src/chrome/content/mouselessbrowsing/core/mlb_initialization.js
+END
+FormElementIdsInitializer.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/148/trunk/src/chrome/content/mouselessbrowsing/core/FormElementIdsInitializer.js
+END
+TabIdHandler.js
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/141/trunk/src/chrome/content/mouselessbrowsing/core/TabIdHandler.js
+END
+page_initialization.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/149/trunk/src/chrome/content/mouselessbrowsing/core/page_initialization.js
+END
+eventhandling.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/149/trunk/src/chrome/content/mouselessbrowsing/core/eventhandling.js
+END
+mlb_utils.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/141/trunk/src/chrome/content/mouselessbrowsing/core/mlb_utils.js
+END
+PageInitData.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/99/trunk/src/chrome/content/mouselessbrowsing/core/PageInitData.js
+END
+FrameIdsInitializer.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/79/trunk/src/chrome/content/mouselessbrowsing/core/FrameIdsInitializer.js
+END
+OtherElementIdsInitializer.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/148/trunk/src/chrome/content/mouselessbrowsing/core/OtherElementIdsInitializer.js
+END
+LinkIdsInitializer.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/148/trunk/src/chrome/content/mouselessbrowsing/core/LinkIdsInitializer.js
+END
+preferences.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/148/trunk/src/chrome/content/mouselessbrowsing/core/preferences.js
+END

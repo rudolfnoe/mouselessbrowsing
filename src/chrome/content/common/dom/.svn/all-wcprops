@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/dom
+END
+WindowUtils.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/dom/WindowUtils.js
+END
+CssUtils.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/dom/CssUtils.js
+END
+Point.js
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/dom/Point.js
+END
+ElementWrapper.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/dom/ElementWrapper.js
+END
+LinkWrapper.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/dom/LinkWrapper.js
+END
+DomUtils.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/dom/DomUtils.js
+END
+ElementObserver.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/19/branches/mlb/0.5.2.1/src/dom/ElementObserver.js
+END

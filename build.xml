@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<project name="mouselessbrowsing" default="createDistributionXPI">
+
+	<!-- Project directories -->
+	<property name="src_dir" location="./src" />
+	<property name="build_dir" location="./build" />
+	<property name="dist_dir" location="./dist" />
+	<property name="backup_dir" location="../backup" />
+	<property name="version" value="0_5_7Build201606242330"/>
+	<property name="version_file_name" value="${ant.project.name}_${version}.xpi"/>
+
+	<!--taskdef classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" name="gcupload"/-->
+	<target name="createDailyBuild"></target>
+	<target name="createDistributionXPI">
+		<delete>
+			<fileset dir="${dist_dir}" includes="*"/>
+		</delete>
+		<zip destfile="${dist_dir}/${version_file_name}" update="true" basedir="${src_dir}" includes="**" excludes="**/*.orig, **/Shortcutmanager.js, **/JSerial.js"/>
+		<!-- Make backup-copy -->
+		<copy todir="${backup_dir}/src">
+			<fileset dir="${src_dir}"/>
+		</copy>
+	</target>
+	<target name="ftpToHomepage">
+		<ftp server="wp1067403.wp026.webpack.hosteurope.de"
+	       remotedir="www/joomla/resources"
+	       userid="ftp1067403-rudolfnoe"
+	       password="${passwordFtp}"
+	       depends="yes">
+			<fileset dir="${dist_dir}">
+				<include name="*.xpi"/>
+			</fileset>
+		</ftp>
+	</target>
+	<target name="googleUpload">
+		<gcupload username="Rudolf.Noe" password="${passwordGoogle}" projectname="mouselessbrowsing" filename="${dist_dir}/${version_file_name}" 
+			targetfilename="${version_file_name}" 
+			summary="Version ${version}" 
+			labels="Type-Installer, OpSys-All" />
+	</target>
+</project>

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/141/trunk/src/chrome/content/mouselessbrowsing/preferences
+END
+style_migration_dialog.xul
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/51/trunk/src/chrome/content/mouselessbrowsing/preferences/style_migration_dialog.xul
+END
+style_migration_dialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/51/trunk/src/chrome/content/mouselessbrowsing/preferences/style_migration_dialog.js
+END
+prefs_dialog.css
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/51/trunk/src/chrome/content/mouselessbrowsing/preferences/prefs_dialog.css
+END
+prefs.xul
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/141/trunk/src/chrome/content/mouselessbrowsing/preferences/prefs.xul
+END
+prefs_dialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/141/trunk/src/chrome/content/mouselessbrowsing/preferences/prefs_dialog.js
+END
+version_manager.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/149/trunk/src/chrome/content/mouselessbrowsing/preferences/version_manager.js
+END

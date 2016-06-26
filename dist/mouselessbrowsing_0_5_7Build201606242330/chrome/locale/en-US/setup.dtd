@@ -1,0 +1,8 @@
+<!ENTITY dialog.title "Setup Mouseless Browsing">
+<!ENTITY modifiersetup.description "By default Mouseless Browsing uses Ctrl+&lt;number&gt; for enabling entering ids within editable fields (e.g. textboxes) and Alt+&lt;number&gt; for opening links in a new tab. This disables the default behavior of Firefox to change tabs with these key combinations. Mouseless Browsing substitutes this by providing special ids beginning with '0' for each tab. If you want to keep the default behavior of changing tabs with Ctrl/Alt+&lt;number&gt; you can change the modifier below.">
+<!ENTITY modifierML.menuitem.none.label "None">
+<!ENTITY modifierML.menuitem.alt.label "Alt">
+<!ENTITY modifierML.menuitem.ctrl.label "Ctrl">
+<!ENTITY modifierML.menuitem.ctrl-alt.label "Ctrl-Alt">
+<!ENTITY modifierForWritableElement.label "Modifier for enabling ids within editable elements">
+<!ENTITY modifierForOpenInNewTab.label "Modifier for opening links in new tab">

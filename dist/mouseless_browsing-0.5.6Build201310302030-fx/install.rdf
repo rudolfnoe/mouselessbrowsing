@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+	<Description about="urn:mozilla:install-manifest">
+
+		<em:id>{c0bcf963-624b-47fe-aa78-8cc02434cf32}</em:id>
+		<em:name>Mouseless Browsing</em:name>
+		<em:version>0.5.6Build201310302030.1-signed.1-signed</em:version>
+		<em:description>Browse the web without the mouse :-)</em:description>
+		<em:creator>Rudolf Noe</em:creator>
+		<em:homepageURL>www.mouseless.de</em:homepageURL>
+		<em:iconURL>chrome://mouselessbrowsing/skin/MLB.ico</em:iconURL>
+		<em:aboutURL/>
+      <em:type>2</em:type>
+      <em:optionsURL>chrome://mouselessbrowsing/content/mouselessbrowsing/preferences/prefs.xul</em:optionsURL>
+		<em:file>
+			<Description about="urn:mozilla:extension:file:mouselessbrowsing.jar">
+				<em:package>content/mouselessbrowsing/</em:package>
+			</Description>
+		</em:file>
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>23.0</em:minVersion>
+				<em:maxVersion>23.*</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+	</Description>
+</RDF>
