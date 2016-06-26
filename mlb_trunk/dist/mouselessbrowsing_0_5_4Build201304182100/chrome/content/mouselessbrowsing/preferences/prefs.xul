@@ -1,0 +1,463 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://browser/skin/"?>
+<?xml-stylesheet href="chrome://mouselessbrowsing/content/common/ui/xul/common.css" type="text/css"?>
+<?xml-stylesheet href="prefs_dialog.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://mouselessbrowsing/locale/prefs.dtd">
+
+<!-- 
+	 *
+	 * Mouseless Browsing 
+	 * Version 0.5
+	 * Created by Rudolf No�
+	 * 01.01.2008
+	 *
+	 * The "keyinputbox" is borrowed from Hit-a-Hint created by 
+	 * Pekka P. Sillanpaa (c) (THANKS!)
+	 * 
+	 * -->
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	id="pref-mouselessbrowsing"
+	title="Mouseless Browsing"
+	centerWindowOnScreen="true"
+	modal="true"
+	onload="doOnload()"
+	ondialogaccept="return saveUserPrefs()"
+	ondialoghelp="dialogHelp()"
+	ondialogextra1="MLB_restoreDefaults()"
+	buttons="help,accept,extra1,cancel"
+	buttonlabelextra1="&restoreDefaultsBU.label;"
+	buttonaccesskeyextra1="&restoreDefaultsBU.accesskey;">
+
+	<script type="application/x-javascript" src="../mlb_common.js"/>
+	<script type="application/x-javascript" src="../core/mlb_utils.js"/>
+	<script type="application/x-javascript" src="prefs_dialog.js"/>
+   
+   <stringbundleset>
+   	<stringbundle id="jsStrings" src="chrome://mouselessbrowsing/locale/prefs.properties"/>
+   </stringbundleset>
+   
+	<broadcasterset>
+		<broadcaster id="keyListboxBC" disabled="true"/>
+		<broadcaster id="idTypeNumericBC" disabled="true"/>
+	</broadcasterset>
+	
+	<popupset>
+		<menupopup id="keyboxKeysPU" position="after_start">
+			<menuitem label="&keyboxKeys.menuitem.tab.label;" oncommand="MLB_setKeyboxFromKeyboxMenu('TAB')"/>
+			<menuitem label="&keyboxKeys.menuitem.shift_tab.label;" oncommand="MLB_setKeyboxFromKeyboxMenu('SHIFT_TAB')"/>
+		</menupopup>
+		
+	</popupset>
+	<vbox>
+	<tabbox>
+		<tabs>
+			<tab label="&tab.handling.label;" />
+			<tab label="Id Types" />
+			<tab label="&tab.layout.label;" />
+			<tab label="&tab.styles.label;" />
+			<tab label="&tab.url_rules.label;" id="siteruletab" />
+			<tab label="&tab.keys.label;" />
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+				<vbox flex="1">
+					<groupbox >
+						<caption label="&groupbox.general_options.label;"></caption>
+						<grid >
+							<rows>
+								<row>
+									<checkbox label="&disableMLB.label;" prefid="mouselessbrowsing.disableMLB"/>
+								</row>
+								<row>
+									<checkbox id="onDemandFlag" label="&showIdsOnDemand.label;" prefid="mouselessbrowsing.showIdsOnDemand"/>
+								</row>
+								<row>
+									<checkbox label="&initOnDomContentLoaded.label;" prefid="mouselessbrowsing.initOnDomContentLoaded"/>
+								</row>
+								<row>
+									<checkbox label="&disableAutomaticPageUpdateOnChange.label;" prefid="mouselessbrowsing.disableAutomaticPageUpdateOnChange"/>
+								</row>
+								<row>
+									<checkbox id="executeAutomatic" label="&executeAutomatic.label;" prefid="mouselessbrowsing.executeAutomaticNew"
+                                     helpid="mouselessbrowsing.executeAutomatic.help" oncommand="MLB_onCommandExecuteAutomatic()"/>                                     
+								</row>
+								<row>
+                           <hbox>
+                              <spacer width="20px"/>
+   									<checkbox id="executeInstantlyWhenIdUnique" label="&executeInstantlyWhenIdUnique.label;" prefid="mouselessbrowsing.executeInstantlyWhenIdUnique" />
+                           </hbox>
+								</row>
+								<row>
+									<grid>
+										<colums>
+											<colum flex="1"/>
+											<colum flex="1"/>
+										</colums>
+										<rows>
+											<row align="center">
+												<label value="&autoExecuteDelay.label;"/>
+												<textbox prefid="mouselessbrowsing.autoExecuteDelay" maxlength="6" width="125px"/>
+											</row>
+											<row align="center">
+												<label value="&pixelsToScroll.label;"/>
+												<textbox prefid="mouselessbrowsing.pixelsToScroll" maxlength="6" width="125px"/>
+											</row>
+											<row align="center">
+												<label value="&maxIdNumber.label;"/>
+												<textbox prefid="mouselessbrowsing.maxIdNumber" maxlength="6" width="125px"/>
+											</row>
+										</rows>
+									</grid>
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+            </vbox>
+         </tabpanel>
+         <tabpanel>
+            <vbox>
+					<groupbox>
+						<caption label="&groupbox.id_type.label;"/>
+						<grid>
+							<columns>
+								<column></column>
+								<column></column>
+							</columns>
+							  <rows>
+      						<row>
+                           <radiogroup id="idtype" prefid="mouselessbrowsing.idType" oncommand="MLB_onCommandIdType()">
+      								<radio label="&idTypeNumeric.label;" value="NUMERIC" helpid="mouselessbrowsing.idTypeNumeric.help"/>
+                              <hbox>
+      									<spacer width="22px"/>
+                                 <grid>
+                                 	<columns>
+                                 		<column/>
+                                 		<column flex="1"/>
+                                 	</columns>
+                                 	<rows>
+                                 		<row>
+                                          <checkbox id="exclusiveNumpad" label="&exlusiveUseOfNumpad.label;" prefid="mouselessbrowsing.exclusiveNumpad" observes="idTypeNumericBC"/>
+                                 		</row>
+                                 		<row align="center">
+               									<label value="&modifierForWritableElement.label;"/>
+               									<menulist id="modifierForWritableElement" width="125px" prefid="mouselessbrowsing.modifierForWritableElement" observes="idTypeNumericBC">
+               										<menupopup>
+                                                <menuitem label="&modifierML.menuitem.none.label;" value="-1"/>
+                                                <menuitem label="&modifierML.menuitem.alt.label;" value="1"/>
+                                                <menuitem label="&modifierML.menuitem.ctrl.label;" value="2"/>
+                                                <menuitem label="&modifierML.menuitem.ctrl-alt.label;" value="3"/>
+               										</menupopup>
+               									</menulist>
+                                 		</row>
+                                 		<row align="center">
+               									<label value="&modifierForOpenInNewTab.label;"/>
+               									<menulist id="modifierForOpenInNewTab" width="125px" prefid="mouselessbrowsing.modifierForOpenInNewTab" observes="idTypeNumericBC">
+               										<menupopup>
+                                                <menuitem label="&modifierML.menuitem.none.label;" value="-1"/>
+                                                <menuitem label="&modifierML.menuitem.alt.label;" value="1"/>
+                                                <menuitem label="&modifierML.menuitem.ctrl.label;" value="2"/>
+                                                <menuitem label="&modifierML.menuitem.ctrl-alt.label;" value="3"/>
+               										</menupopup>
+               									</menulist>
+                                 		</row>
+                                 		<row align="center">
+               									<label value="&modifierForOpenInNewWindow.label;"/>
+               									<menulist id="modifierForOpenInNewTab" width="125px" prefid="mouselessbrowsing.modifierForOpenInNewWindow" observes="idTypeNumericBC">
+               										<menupopup>
+                                                <menuitem label="&modifierML.menuitem.none.label;" value="-1"/>
+                                                <menuitem label="&modifierML.menuitem.alt.label;" value="1"/>
+                                                <menuitem label="&modifierML.menuitem.ctrl.label;" value="2"/>
+                                                <menuitem label="&modifierML.menuitem.ctrl-alt.label;" value="3"/>
+               										</menupopup>
+               									</menulist>
+                                 		</row>
+                                 		<row align="center" id="coolirisPreviewsModifierRow">
+               									<label value="&modifierForOpenInCooirisPreview.label;"/>
+               									<menulist id="modifierForOpenInCoolirisPreviews" width="125px" prefid="mouselessbrowsing.modifierForOpenInCoolirisPreviews" observes="idTypeNumericBC">
+               										<menupopup>
+                                                <menuitem label="&modifierML.menuitem.none.label;" value="-1"/>
+                                                <menuitem label="&modifierML.menuitem.alt.label;" value="1"/>
+                                                <menuitem label="&modifierML.menuitem.ctrl.label;" value="2"/>
+                                                <menuitem label="&modifierML.menuitem.ctrl-alt.label;" value="3"/>
+               										</menupopup>
+               									</menulist>
+                                 		</row>
+                                 	</rows>
+                                 </grid>
+                              </hbox>
+      								<hbox align="center">
+      								   <radio id="useSelfDefinedCharsCB" label="&useSelfDefinedChars.label;" value="CHAR" helpid="mouselessbrowsing.idTypeCharSet.help"/>
+      								   <spacer flex="1"/>
+      									<textbox id="idCharsTB" prefid="mouselessbrowsing.idChars" oninput="MLB_onInputIdCharsTB()" />
+      								</hbox>
+                           </radiogroup>
+      						</row>
+							</rows>
+						</grid>
+					</groupbox>
+				</vbox>
+			</tabpanel>
+			<tabpanel>
+				<vbox flex="1">
+					<groupbox >
+						<caption label="&groupbox.visibility-of-ids.label;"></caption>
+						<grid>
+							<rows >
+								<row>
+									<checkbox id="allIds" label="&disableAllIds.label;" prefid="mouselessbrowsing.disableAllIds"  oncommand="MLB_onTogglingVisibilityAllIds()"/>
+								</row>
+								<row align="center">
+									<checkbox id="links" style="margin-left:30px" label="&enableLinkIds.label;" prefid="mouselessbrowsing.enableLinkIds"  visibilityFlag="true"/>
+								</row>
+								<row align="center">
+									<checkbox id="imglinks" style="margin-left:30px" label="&enableImgLinkIds.label;" prefid="mouselessbrowsing.enableImgLinkIds"  visibilityFlag="true"/>
+								</row>
+								<row align="center">
+									<checkbox id="formelements" style="margin-left:30px" label="&enableImgFormElementIds.label;" prefid="mouselessbrowsing.enableFormElementIds"  visibilityFlag="true"/>
+								</row>
+								<row align="center">
+									<checkbox id="frames" style="margin-left:30px" label="&enableImgFrameIds.label;" prefid="mouselessbrowsing.enableFrameIds"  visibilityFlag="true"/>
+								</row>
+								<row align="center">
+									<checkbox id="otherelements" style="margin-left:30px" label="&enableOtherIds.label;" prefid="mouselessbrowsing.enableOtherIds"  visibilityFlag="true"/>
+								</row>
+							</rows>
+						</grid>
+					</groupbox>
+               <groupbox>
+               	<caption label="&groupbox.other-layout-config.label;"/>
+                  <grid>
+                     <columns>
+                        <column flex="1"/>
+                     </columns>
+                     <rows flex="1">
+                        <row>
+                           <checkbox id="smartPositioning" label="&smartPositioning.label;" prefid="mouselessbrowsing.smartPositioning" />
+                        </row>
+                        <!--TODO remove or put in-->
+                        <!--row>
+                           <hbox>
+                              <spacer width="20px"/>                              
+                              <checkbox id="omitSmartPosForCheckboxAndRadio" label="&omitSmartPosForCheckboxAndRadio.label;" prefid="mouselessbrowsing.omitSmartPosForCheckboxAndRadio" />
+                           </hbox>
+                        </row-->
+                        <row>
+                           <checkbox label="&filterDuplicateLinks.label;" prefid="mouselessbrowsing.filterDuplicateLinks" />
+                        </row>
+                        <row>
+                           <checkbox label="&showTabIds.label;" prefid="mouselessbrowsing.showTabIds" />
+                        </row>
+                        <row>
+                           <checkbox label="&showKeybufferInStatusbar.label;" prefid="mouselessbrowsing.showKeybufferInStatusbar" />
+                        </row>
+                        <row>
+                           <checkbox label="&showMlbIconInStatusbar.label;" prefid="mouselessbrowsing.showMlbIconInStatusbar" />
+                        </row>
+                        <row>
+                           <checkbox label="&showMlbMenu.label;" prefid="mouselessbrowsing.showMlbMenu" />
+                        </row>
+                     </rows>
+                  </grid>
+   					<spacer flex="1"/>
+               </groupbox>
+					<spacer flex="1"/>
+				</vbox>
+			</tabpanel>
+			<tabpanel>
+            <vbox flex="1">
+               <groupbox flex="1">
+                  <grid flex="1">
+                     <columns>
+                        <column flex="1"/>
+                     </columns>
+                     <rows flex="1">
+                        <row>
+                           <label value="&styleForIdSpan.label;"/>&#160;
+                        </row>
+                        <row flex="1">
+                           <textbox id="styleForIdSpan" prefid="mouselessbrowsing.styleForIdSpan" flex="1" multiline="true" rows="6"
+                              previewSpanId="previewIdSpan" oninput="MLB_setPreviewForIds('styleForIdSpan')"/>
+                        </row>
+                        <row>
+                           <hbox align="center">
+                              <spacer width="5px"/>
+                              <html:div>Preview:</html:div>
+                              <html:div >
+                                 <html:span id="previewIdSpan">42</html:span>
+                              </html:div>
+                              <spacer flex="1"/>
+                              <button label="&restoreDefaultBU.label;" oncommand="MLB_setStyleDefault('styleForIdSpan')"/>
+                           </hbox>
+                        </row>
+                        <row>
+                           <label value="&styleForFrameIdSpan.label;"/>&#160;
+                        </row>
+                        <row flex="1">
+                           <textbox id="styleForFrameIdSpan" prefid="mouselessbrowsing.styleForFrameIdSpan" flex="1" multiline="true" rows="5"
+                              previewSpanId="previewFrameIdSpan" oninput="MLB_setPreviewForIds('styleForFrameIdSpan')"/>
+                        </row>
+                        <row>
+                           <hbox align="center">
+                              <spacer width="5px"/>
+                              <html:div>Preview:</html:div>
+                              <html:div>
+                                 <html:span id="previewFrameIdSpan">42</html:span>
+                              </html:div>
+                              <spacer flex="1"/>
+                              <button label="&restoreDefaultBU.label;" oncommand="MLB_setStyleDefault('styleForFrameIdSpan')"/>
+                           </hbox>
+                         </row>
+                     </rows>
+                  </grid>
+               </groupbox>
+               <spacer flex="1"/>
+            </vbox>
+         </tabpanel>
+			<tabpanel >
+				<vbox flex="1">
+					<grid>
+						<columns flex="1">
+							<column></column>
+							<column flex="1"></column>
+						</columns>
+						<rows >
+							<row align="center">
+								<label value="&urlPattern.label;" control="urlPatterTB" accesskey="&urlPattern.accesskey;"/>
+								<textbox id="urlPatterTB" flex="1" helpid="mouselessbrowsing.urlPattern.help"/>
+							</row>
+							<row align="center">
+								<label value="&visibilityMode.label;"/>
+								<menulist id="visibilityModeML" persist="value" helpid="mouselessbrowsing.visibilityMode.help">
+									<menupopup>
+										<menuitem label="&visibilityModeML.menuitem.hide_ids.label;" value="NONE"/>
+										<menuitem label="&visibilityModeML.menuitem.show_ids_as_configured.label;" value="CONFIG"/>
+										<menuitem label="&visibilityModeML.menuitem.show_all_ids.label;" value="ALL"/>
+									</menupopup>
+								</menulist>
+							</row>
+						</rows>
+					</grid>
+					<checkbox id="siteRuleExclusiveNumpadCB" label="&exlusiveUseOfNumpad.label;" persist="checked" helpid="mouselessbrowsing.exclusiveNumpad.help"/>
+					<checkbox id="siteRuleOnDemandFlagCB" label="&showIdsOnDemand.label;" persist="checked" helpid="mouselessbrowsing.showIdsOnDemand.help"/>
+					<hbox pack="center">
+						<button label="&urlRule.addBU.label;" oncommand="MLB_addSiteRule()" accesskey="&urlRule.addBU.accesskey;"/>
+						<button id="updateBtn" label="&urlRule.updateBU.label;" oncommand="MLB_updateSiteRule()" accesskey="&urlRule.updateBU.accesskey;" disabled="true"/>
+						<button id="removeBtn" label="&urlRule.removeBU.label;" oncommand="MLB_removeSiteRule()" accesskey="&urlRule.removeBU.accesskey;" disabled="true"/>
+					</hbox>
+					<listbox id="siteRulesLB" prefid="mouselessbrowsing.siteRules" flex="1" disabled="false">
+						<listhead>
+							<listheader label="&urlRulesLB.listheader.url_pattern.label;"/>
+							<listheader align="center" style="display:none"/>
+							<listheader style="display:none" />
+							<listheader style="display:none" />
+						</listhead>
+						<listcols>
+							<listcol flex="1"/>
+							<listcol style="display:none"/>
+							<listcol style="display:none"/>
+							<listcol style="display:none"/>
+						</listcols>
+					</listbox>
+				</vbox>
+			</tabpanel>
+         <tabpanel>
+            <vbox flex="1">
+               <listbox id="keyListBox" prefLoadFunction="MLB_loadKeyListbox" prefSaveFunction="MLB_saveKeyListbox" onselect="byId('keyListboxBC').setAttribute('disabled', false)" height="290px">
+                  <listcols>
+                  	<listcol flex="1"/>
+                  	<listcol width="150px"/>
+                  </listcols>
+                  <listhead>
+                     <listheader label="&keyLB.listheader.description.label;" />
+                     <listheader label="&keyLB.listheader.key_combination.label;" />
+                  </listhead>
+                  <listitem prefid="mouselessbrowsing.keys.toggleMLB">
+                     <listcell label="&mouselessbrowsing.keys.toggleMLB;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.toggleAllIds">
+                     <listcell label="&mouselessbrowsing.keys.toggleAllIds;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.updatePage">
+                     <listcell label="&mouselessbrowsing.keys.updatePage;"/>
+                     <listcell />
+                  </listitem>                  
+                  <listitem prefid="mouselessbrowsing.keys.toggleExlusiveUseOfNumpad">
+                     <listcell label="&mouselessbrowsing.keys.toggleExlusiveUseOfNumpad;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.clearKeybuffer">
+                     <listcell label="&mouselessbrowsing.keys.clearKeybuffer;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.openInNewTabPostfixKey">
+                     <listcell label="&mouselessbrowsing.keys.openInNewTabPostfixKey;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.openInNewWindowPostfixKey">
+                     <listcell label="&mouselessbrowsing.keys.openInNewWindowPostfixKey;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem id="keys.openInCoolirisPreviewsPostfixKey" prefid="mouselessbrowsing.keys.openInCoolirisPreviewsPostfixKey">
+                     <listcell label="&mouselessbrowsing.keys.openInCoolirisPreviewsPostfixKey;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.selectLink">
+                     <listcell label="&mouselessbrowsing.keys.selectLink;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.historyBack">
+                     <listcell label="&mouselessbrowsing.keys.historyBack;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.historyForward">
+                     <listcell label="&mouselessbrowsing.keys.historyForward;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.scrollDown">
+                     <listcell label="&mouselessbrowsing.keys.scrollDown;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.scrollUp">
+                     <listcell label="&mouselessbrowsing.keys.scrollUp;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.blurActiveElement">
+                     <listcell label="&mouselessbrowsing.keys.blurActiveElement;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.blockKeyboardInputForMlb">
+                     <listcell label="&mouselessbrowsing.keys.blockKeyboardInputForMlb;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.openConfig">
+                     <listcell label="&mouselessbrowsing.keys.openConfig;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.addSiteRule">
+                     <listcell label="&mouselessbrowsing.keys.addSiteRule;"/>
+                     <listcell />
+                  </listitem>
+                  <listitem prefid="mouselessbrowsing.keys.toggleEnableDisableMLB">
+                     <listcell label="&mouselessbrowsing.keys.toggleEnableDisableMLB;"/>
+                     <listcell />
+                  </listitem>
+               </listbox>
+               <hbox align="center" style="margin-top:5px">
+                  <label value="&shortcutKeybox.label;"/>
+                  <keyinputbox id="keyInputBox" maxlength="1" allowmodifiers="true" flex="1" context="keyboxKeysPU"/>
+                  <button label="&keys.assignBU.label;" accesskey="&keys.assignBU.accesskey;" oncommand="MLB_onCommandAssignShortcut()" observes="keyListboxBC"></button>
+                  <button label="&keys.removeBU.label;" accesskey="&keys.removeBU.accesskey;" oncommand="MLB_onCommandRemoveShortcut()" observes="keyListboxBC"></button>
+                  <button label="&keys.restore_defaultBU.label;" accesskey="&keys.restore_defaultBU.accesskey;" oncommand="MLB_onCommandRestoreDefault()" observes="keyListboxBC"></button>
+               </hbox>              
+            </vbox>
+         </tabpanel>
+		</tabpanels>
+	</tabbox>
+   <label value="&description.label;" style="margin-top:5px"/>
+   <textbox id="helpDescriptionTB" multiline="true" rows="4" readonly="true" tabindex="-1"/>
+	</vbox>
+</dialog>

@@ -1,0 +1,139 @@
+<html>
+<head>
+   <link href="main.css" rel="stylesheet" type="text/css"></link>
+   <script type="text/javascript">
+      function doOnload(){
+         //setTimeout("window.editframe.document.designMode= 'On'", 400)
+      }
+      var focusHandlerActive = false  
+      function toggleFocusHandler(){
+         if(focusHandlerActive){
+	         window.removeEventListener('focus',promptTarget, true)
+	      }else{
+	         window.addEventListener('focus',promptTarget, true)
+	      } 
+            
+         focusHandlerActive=!focusHandlerActive
+         
+      }
+      function promptTarget(event){
+         var target = event.originalTarget
+         var tn = target.tagName.toUpperCase()
+         if((tn!='INPUT' && tn!="SELECT" && tn!="TEXTAREA") || target.id=="toggleButton")
+            return
+         if(tn=='INPUT'){
+	         prompt(null, target.type.toUpperCase())
+	      }else{
+	        prompt(null, tn)
+	      }
+         
+      }
+   </script>
+</head>
+<body onload="doOnload()">
+
+<form name="f1" action="">
+<table>
+	<tr>
+	  <td>Add Focus Handler</td>
+	  <td><input id="toggleButton" type="Button" onclick="toggleFocusHandler()" value="Toggle Focus Handler">
+	</tr>
+	<tr>
+		<td>Button</td>
+		<td><input type="button" value="Button">
+		</td>
+	</tr>
+	<tr>
+		<td>Selectbox</td>
+		<td><select>
+			<option>1 Test</option>
+			<option>2 Test</option>
+			<option>3 Test</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>Listbox</td>
+		<td><select name="top5" size="3">
+			<option>Heino</option>
+			<option>Michael Jackson</option>
+			<option>Tom Waits</option>
+			<option>Nina Hagen</option>
+			<option>Marianne Rosenberg</option>
+		</select></td>
+	</tr>
+	<tr>
+	  <td>Textinput</td>
+	  <td><input type="text" width="200px">Text danach</td>
+	</tr>
+	<tr>
+	  <td>Password</td>
+	  <td><input type="password" width="150px"></td>
+	</tr>
+	<tr>
+	  <td>
+	     Textarea
+	  </td>
+	  <td>
+	     <textarea cols="10" rows="2">Line1\nLine2\nLine3\nLine4\nLine3\nLine4</textarea>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	     Checkbox
+	  </td>
+	  <td>
+	     <input type="checkbox">
+	  </td>
+	</tr>
+   <tr>
+     <td>
+        Radio
+     </td>
+     <td>
+        <input type="radio">
+     </td>
+   </tr>
+	<tr>
+	  <td>
+	     Editable Iframe
+	   </td>
+	   <td>
+	     <iframe name="editframe" id="editframe" style="width:200px; height:150px" src="ContentOfEditableFrame.html"></iframe>
+	   </td>
+	</tr>
+	<tr>
+	  <td>
+	     Open in link in same tab
+	   </td>
+	   <td>
+	     <a href="http://www.mouseless.de">Open in same tab</a>
+	   </td>
+	</tr>
+	<tr>
+	  <td>
+	     Open in new tab (_blank)
+	   </td>
+	   <td>
+	     <a id="mouselesslink" href="http://www.mouseless.de" target="_blank">Open in new tab (_blank)</a>
+	   </td>
+	</tr>
+	<tr>
+	  <td>
+	     Open in new tab (_new)
+	   </td>
+	   <td>
+	     <a id="mouselesslink" href="http://www.mouseless.de" target="_new">Open in new tab (_new)</a>
+	   </td>
+	</tr>
+   <tr>
+     <td>
+        Open in new tab (new)
+      </td>
+      <td>
+        <a id="mouselesslink" href="http://www.mouseless.de" target="new">Open in new tab (new)</a>
+      </td>
+   </tr>
+   </table>
+</form>
+</body>
+</html>

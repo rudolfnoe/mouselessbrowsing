@@ -1,0 +1,90 @@
+<!ENTITY tab.handling.label "General">
+<!ENTITY tab.layout.label "Layout">
+<!ENTITY tab.styles.label "Styles">
+<!ENTITY tab.url_rules.label "URL Rules">
+<!ENTITY tab.keys.label "Keys">
+<!ENTITY groupbox.general_options.label "General Options">
+<!ENTITY disableMLB.label "Disable Mouseless Browsing">
+<!ENTITY showIdsOnDemand.label "Show ids only on demand">
+<!ENTITY initOnDomContentLoaded.label "Show ids before all images are loaded (this can partly lead to misplaced ids)">
+<!ENTITY disableAutomaticPageUpdateOnChange.label "Disable automatic updates of ids on page change.">
+<!ENTITY executeAutomatic.label "Execute automatically without pressing Enter">
+<!ENTITY executeInstantlyWhenIdUnique.label "Execute action instantly when the id is unique (prevents use of post-fix keys)">
+<!ENTITY groupbox.id_type.label "Id Type">
+<!ENTITY idTypeNumeric.label "Use Numeric Ids">
+<!ENTITY exlusiveUseOfNumpad.label "Use numpad exclusively for Mouseless Browsing">
+<!ENTITY modifierML.menuitem.none.label "None">
+<!ENTITY modifierML.menuitem.alt.label "Alt">
+<!ENTITY modifierML.menuitem.ctrl.label "Ctrl">
+<!ENTITY modifierML.menuitem.ctrl-alt.label "Ctrl-Alt">
+<!ENTITY useSelfDefinedChars.label "Use self-defined character set for generating ids">
+<!ENTITY groupbox.visibility-of-ids.label "Visibility of ids">
+<!ENTITY disableAllIds.label "Hide all Ids">
+<!ENTITY enableLinkIds.label "Enable ids for text-links">
+<!ENTITY enableImgLinkIds.label "Enable ids for image-links">
+<!ENTITY enableImgFormElementIds.label "Enable ids for form elements">
+<!ENTITY enableImgFrameIds.label "Enable ids for frames">
+<!ENTITY enableOtherIds.label "Enable ids for other clickable elements (e.g. Flash, DIVs etc.)">
+<!ENTITY groupbox.other-layout-config.label "Other Layout Configuration">
+<!ENTITY smartPositioning.label "Smart positioning of ids">
+<!ENTITY omitSmartPosForCheckboxAndRadio.label "Omit smart positioning of checkboxes and radio buttons (reduce initialization time)">
+<!ENTITY showTabIds.label "Show tab ids">
+<!ENTITY filterDuplicateLinks.label "Hide ids for image links for which an identical text link exists">
+<!ENTITY showKeybufferInStatusbar.label "Show keybuffer in statusbar">
+<!ENTITY showMlbIconInStatusbar.label "Show MLB Icon in statusbar">
+<!ENTITY showMlbMenu.label "Show MLB Menu in the Tools menu">
+<!ENTITY restoreDefaultBU.label "Restore Default">
+<!ENTITY visibilityModeML.menuitem.hide_ids.label "Hide Ids">
+<!ENTITY visibilityModeML.menuitem.show_ids_as_configured.label "Show Ids as configured">
+<!ENTITY visibilityModeML.menuitem.show_all_ids.label "Show all Ids">
+<!ENTITY urlRule.addBU.label "Add">
+<!ENTITY urlRule.updateBU.label "Update">
+<!ENTITY urlRule.removeBU.label "Remove">
+<!ENTITY urlRulesLB.listheader.url_pattern.label "URL Pattern">
+<!ENTITY keyLB.listheader.description.label "Description">
+<!ENTITY keyLB.listheader.key_combination.label "Key Combination">
+<!ENTITY mouselessbrowsing.keys.toggleMLB "Toggling visibility of ids on/off">
+<!ENTITY mouselessbrowsing.keys.toggleAllIds "Toggling visibility of ids for all/only configured elements">
+<!ENTITY mouselessbrowsing.keys.updatePage "Update ids of page">
+<!ENTITY mouselessbrowsing.keys.toggleExlusiveUseOfNumpad "Toggling exclusive use of numpad">
+<!ENTITY mouselessbrowsing.keys.clearKeybuffer "Clearing keybuffer">
+<!ENTITY mouselessbrowsing.keys.openInNewTabPostfixKey "Postfix-key to open link in new tab">
+<!ENTITY mouselessbrowsing.keys.openInNewWindowPostfixKey "Postfix-key to open link in new window">
+<!ENTITY mouselessbrowsing.keys.openInCoolirisPreviewsPostfixKey "Postfix-key to open link in Cooliris Preview">
+<!ENTITY mouselessbrowsing.keys.selectLink "Postfix-key to select a link">
+<!ENTITY mouselessbrowsing.keys.historyBack "History back">
+<!ENTITY mouselessbrowsing.keys.historyForward "History forward">
+<!ENTITY mouselessbrowsing.keys.scrollDown "Scroll down">
+<!ENTITY mouselessbrowsing.keys.scrollUp "Scroll up">
+<!ENTITY mouselessbrowsing.keys.blurActiveElement "Blur active element">
+<!ENTITY mouselessbrowsing.keys.blockKeyboardInputForMlb "Block keyboard input for MLB">
+<!ENTITY mouselessbrowsing.keys.openConfig "Open Configuration">
+<!ENTITY mouselessbrowsing.keys.addSiteRule "Add URL Rule">
+<!ENTITY mouselessbrowsing.keys.toggleEnableDisableMLB "Toggle enable/disable MLB">
+<!ENTITY keyboxKeys.menuitem.tab.label "Tab">
+<!ENTITY keyboxKeys.menuitem.shift_tab.label "Shift+Tab">
+<!ENTITY keys.assignBU.label "Assign">
+<!ENTITY keys.removeBU.label "Remove">
+<!ENTITY keys.restore_defaultBU.label "Restore Default">
+<!ENTITY autoExecuteDelay.label "Delay for automatic execution/clearing keybuffer (msec)">
+<!ENTITY pixelsToScroll.label "Pixels to scroll when pressing shortcuts">
+<!ENTITY maxIdNumber.label "Maximum number of ids">
+<!ENTITY modifierForWritableElement.label "Modifier for enabling ids within editable elements">
+<!ENTITY modifierForOpenInNewTab.label "Modifier for opening links in new tab">
+<!ENTITY modifierForOpenInNewWindow.label "Modifier for opening links in new window">
+<!ENTITY modifierForOpenInCooirisPreview.label "Modifier for opening links in Cooliris Preview">
+<!ENTITY styleForIdSpan.label "Style for id span">
+<!ENTITY styleForFrameIdSpan.label "Style for frame id span">
+<!ENTITY urlPattern.label "URL Pattern">
+<!ENTITY visibilityMode.label "Visibility Mode">
+<!ENTITY shortcutKeybox.label "Shortcut">
+<!ENTITY description.label "Description">
+<!ENTITY restoreDefaultsBU.label "Restore Defaults">
+<!ENTITY restoreDefaultsBU.accesskey "d">
+<!ENTITY urlPattern.accesskey "p">
+<!ENTITY urlRule.addBU.accesskey "a">
+<!ENTITY urlRule.updateBU.accesskey "u">
+<!ENTITY urlRule.removeBU.accesskey "r">
+<!ENTITY keys.assignBU.accesskey "g">
+<!ENTITY keys.removeBU.accesskey "r">
+<!ENTITY keys.restore_defaultBU.accesskey "f">

@@ -1,0 +1,17 @@
+<!ENTITY disableMLB.label "Disable MLB">
+<!ENTITY openConfiguration.label "Open Configuration">
+<!ENTITY addUrlRule.label "Add URL Rule">
+<!ENTITY help.label "Help">
+<!ENTITY reportBug.label "Report Bug">
+<!ENTITY giveFeedback.label "Give Feedback">
+<!ENTITY hideMLBMenu.label "Hide MLB Menu from Tools Menu">
+<!ENTITY hideMLBStatusIcon.label "Hide MLB Statusbar">
+<!ENTITY toogleTabIdVisibility.label "Show tab ids">
+<!ENTITY disableMLB.accesskey "d">
+<!ENTITY openConfiguration.accesskey "c">
+<!ENTITY addUrlRule.accesskey "a">
+<!ENTITY help.accesskey "h">
+<!ENTITY reportBug.accesskey "b">
+<!ENTITY giveFeedback.accesskey "f">
+<!ENTITY hideMLBMenu.accesskey "m">
+<!ENTITY hideMLBStatusIcon.accesskey "m">

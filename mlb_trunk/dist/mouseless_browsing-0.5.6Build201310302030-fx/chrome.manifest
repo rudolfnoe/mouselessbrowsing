@@ -1,0 +1,6 @@
+content mouselessbrowsing chrome/content/
+overlay	chrome://browser/content/browser.xul	chrome://mouselessbrowsing/content/mouselessbrowsing/mouselessbrowsingOverlay.xul
+
+locale mouselessbrowsing en-US chrome/locale/en-US/
+
+skin	mouselessbrowsing classic chrome/skin/classic/

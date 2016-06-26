@@ -1,0 +1,5 @@
+<!ENTITY dialogTitle "Mouseless Browsing Reseting Preferences">
+<!ENTITY infotext1 "Mouseless Browsing has changed the default styles of ids to minimize the impact on the page layout">
+<!ENTITY infotext2 "It was detected that you use self defined styles.">
+<!ENTITY  resetRB.label "Reset to new default style (recommended)">
+<!ENTITY  doNothing.label "Do nothing">

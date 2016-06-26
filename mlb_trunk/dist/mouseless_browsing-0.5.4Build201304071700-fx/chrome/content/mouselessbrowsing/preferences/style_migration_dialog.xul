@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://mouselessbrowsing/locale/style_migration_dialog.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    buttons="accept"
+    onload="moveTo((screen.width/2)-150,(screen.height/2)-90)"
+    ondialogaccept="MLB_onDiaglogAccept()"
+    width="300px"
+    height="180px"
+    title="&dialogTitle;"
+    buttonpack="center">
+   <script type="application/x-javascript"  src="style_migration_dialog.js"/>
+      <vbox>
+      	<description>&infotext1;</description>
+      	<description>&infotext2;</description>
+      	<radiogroup id="styleresetRG">
+      		<radio label="&resetRB.label;" selected="true" value="RESET"/>
+      		<radio label="&doNothing.label;" value="KEEP"/>
+      	</radiogroup>
+      </vbox>
+</dialog>

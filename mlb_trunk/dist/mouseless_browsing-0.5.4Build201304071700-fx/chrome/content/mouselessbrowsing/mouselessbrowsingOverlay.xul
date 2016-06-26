@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE window SYSTEM "chrome://mouselessbrowsing/locale/mouselessbrowsingOverlay.dtd">
+<overlay id="mouselessbrowsing" 
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <script type="application/x-javascript" src="mlb_common.js"></script>
+    <script type="application/x-javascript" src="core/preferences.js"></script>
+    <script type="application/x-javascript" src="core/mlb_utils.js"></script>
+    <script type="application/x-javascript" src="core/page_data.js"></script>
+    <script type="application/x-javascript" src="core/tab_local_prefs.js"></script>
+    <script type="application/x-javascript" src="core/eventhandling.js"></script>
+    <script type="application/x-javascript" src="core/AbstractInitializer.js"></script>
+    <script type="application/x-javascript" src="core/FormElementIdsInitializer.js"></script>
+    <script type="application/x-javascript" src="core/FrameIdsInitializer.js"></script>
+    <script type="application/x-javascript" src="core/LinkIdsInitializer.js"></script>
+    <script type="application/x-javascript" src="core/OtherElementIdsInitializer.js"></script>
+    <script type="application/x-javascript" src="core/PageInitData.js"></script>
+    <script type="application/x-javascript" src="core/page_initialization.js"></script>
+    <script type="application/x-javascript" src="core/TabIdHandler.js"></script>
+    <script type="application/x-javascript" src="preferences/version_manager.js"></script>
+    <script type="application/x-javascript" src="miscellaneous/google_project_helper.js"></script>
+    <script type="application/x-javascript" src="miscellaneous/LayoutDebugger.js"></script>
+    <script type="application/x-javascript" src="core/mlb_initialization.js"></script>
+    <script type="application/x-javascript" src="mouselessbrowsingOverlay.js"></script>
+
+    <stringbundleset>
+    	<stringbundle id="mouselessbrowsingOverlaySB" src="chrome://mouselessbrowsing/locale/mouselessbrowsingOverlay.properties"/>
+    </stringbundleset>
+    <broadcasterset>
+    	<broadcaster id="mlb_disableMLB_bc" checked=""/>
+    	<broadcaster id="mlb_openConfig_bc" acceltext=""/>
+    	<broadcaster id="mlb_addUrlRule_bc" acceltext=""/>
+    </broadcasterset>
+    <commandset>
+    	<command id="mlb_openConfig_cmd" label="&openConfiguration.label;" oncommand="mouselessbrowsing.EventHandler.openConfiguration()" accesskey="&openConfiguration.accesskey;" />
+    	<command id="mlb_addUrlRule_cmd" label="&addUrlRule.label;" oncommand="mouselessbrowsing.EventHandler.addSiteRule()" accesskey="&addUrlRule.accesskey;"/>
+    	<command id="mlb_disableMLB_cmd" label="&disableMLB.label;" oncommand="mouselessbrowsing.InitManager.toggleEnableDisableMLB()" accesskey="&disableMLB.accesskey;"/>
+    	<command id="mlb_mlbHelp_cmd" label="&help.label;" oncommand="mouselessbrowsing.MlbUtils.showMlbHelp()" accesskey="&help.accesskey;"/>
+    	<command id="mlb_reportBug_cmd" label="&reportBug.label;" oncommand="mouselessbrowsing.EventHandler.reportBug()" accesskey="&reportBug.accesskey;"/>
+    	<command id="mlb_giveFeedback_cmd" label="&giveFeedback.label;" oncommand="mouselessbrowsing.EventHandler.giveFeedback()" accesskey="&giveFeedback.accesskey;"/>
+    	<command id="mlb_hideMenu_cmd" label="&hideMLBMenu.label;" oncommand="mouselessbrowsing.EventHandler.hideMlbMenu()" accesskey="&hideMLBMenu.accesskey;"/>
+    	<command id="mlb_hideMlbStatusBar_cmd" label="&hideMLBStatusIcon.label;" oncommand="mouselessbrowsing.EventHandler.hideMlbStatusbar()" accesskey="&hideMLBStatusIcon.accesskey;"/>
+    	<command id="mlb_toogleTabIdVisibility_cmd" label="&toogleTabIdVisibility.label;" oncommand="mouselessbrowsing.TabIdHandler.toggleTabIdVisibility(event)"/>
+    </commandset>
+
+    <menupopup id="menu_ToolsPopup">
+    	<menu id="mlb_tools_menu" label="Mouseless Browsing" insertbefore="sanitizeSeparator" accesskey="m" >
+         <menupopup>
+            <menuitem command="mlb_disableMLB_cmd" type="checkbox" observes="mlb_disableMLB_bc"/>
+            <menuseparator/>
+            <menuitem command="mlb_openConfig_cmd" observes="mlb_openConfig_bc"/>
+            <menuitem command="mlb_addUrlRule_cmd" observes="mlb_addUrlRule_bc"/>
+            <menuseparator/>
+            <menuitem command="mlb_mlbHelp_cmd"/>
+            <menuitem command="mlb_reportBug_cmd"/>
+            <menuitem command="mlb_giveFeedback_cmd"/>
+            <menuseparator/>
+            <menuitem command="mlb_hideMenu_cmd"/>
+         </menupopup>      
+    	</menu>
+    </menupopup>
+
+    <popupset>
+    	<menupopup id="mlb_status_context">
+         <menuitem command="mlb_disableMLB_cmd" type="checkbox" observes="mlb_disableMLB_bc"/>
+    		<menuseparator/>
+    		<menuitem command="mlb_openConfig_cmd" observes="mlb_openConfig_bc"/>
+    		<menuitem command="mlb_addUrlRule_cmd" observes="mlb_addUrlRule_bc"/>
+    		<menuseparator/>
+    		<menuitem command="mlb_mlbHelp_cmd"/>
+    		<menuitem command="mlb_reportBug_cmd"/>
+    		<menuitem command="mlb_giveFeedback_cmd"/>
+    		<menuseparator/>
+    		<menuitem command="mlb_hideMlbStatusBar_cmd"/>
+    	</menupopup>
+      <menupopup>
+         <menuitem id="mlb_showTabIdMI" anonid="mlb_showTabIdMI" command="mlb_toogleTabIdVisibility_cmd" type="checkbox" checked="true"/>
+      </menupopup>
+    </popupset>
+
+    <statusbar id="status-bar">
+         <statusbarpanel id="mlb-status-panel" onclick="mouselessbrowsing.EventHandler.openConfiguration(event)">
+           <hbox crop="end">
+      	    <image id="mlb-status-image" src="chrome://mouselessbrowsing/skin/MLB.ico" context="mlb_status_context" style="width:16px"/>
+   	       <image id="mlb-status-exl-numpad-image" src="chrome://mouselessbrowsing/skin/MLB_ExlNumpad.ico" style="width:16px"/>
+			    <label id="mlb-status" crop="end" style="width:50px; overflow:hidden"/>
+           </hbox>
+		</statusbarpanel>
+	</statusbar> 
+</overlay>
