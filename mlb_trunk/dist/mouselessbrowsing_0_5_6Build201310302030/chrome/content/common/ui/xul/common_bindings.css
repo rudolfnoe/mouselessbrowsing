@@ -1,4 +1,0 @@
-// why won't this work?? DOM inspector claims that the background 
-// color is (255,255,255) but it isn't!! argghh!
-//textbox.keyinputbox {background-color:-moz-field !important; }
-textbox.keyinputbox {background-color:#660000; }
